@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Horský bicykel Trek Marlin 7 – SportRent</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="SportRent – domov">
+        <span class="logo">LOGO</span>
+        <span class="brand-name">SportRent</span>
+      </a>
+
+      <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Zobraziť menu">
+      <label for="menu-toggle" class="menu-button" aria-hidden="true">☰</label>
+
+      <div class="menu-panel">
+        <nav class="main-nav" aria-label="Hlavné menu">
+          <ul>
+            <li><a href="index.html" class="active">Katalóg</a></li>
+            <li><a href="#">Moje rezervácie</a></li>
+            <li><a href="#">Profil</a></li>
+          </ul>
+        </nav>
+
+        <div class="auth">
+          <span class="user-name">Matej Kováč</span>
+          <a class="btn" href="#">Odhlásiť</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <nav class="breadcrumb" aria-label="Omrvinková navigácia">
+      <ol>
+        <li><a href="index.html">Katalóg</a></li>
+        <li><a href="#">Bicykle</a></li>
+        <li aria-current="page"><strong>Horský bicykel Trek Marlin 7</strong></li>
+      </ol>
+    </nav>
+
+    <div class="detail-grid">
+
+      <!-- Galéria -->
+      <section class="gallery" aria-label="Galéria fotografií">
+        <h1>Horský bicykel Trek Marlin 7</h1>
+        <div class="item-meta">
+          <span class="tag">Bicykle</span>
+          <span class="stars" aria-hidden="true">★★★★☆</span>
+          <span>4,2 (12 hodnotení)</span>
+        </div>
+
+        <div class="photo photo-main">
+          Hlavná fotografia
+          <button type="button" class="nav-arrow prev" aria-label="Predchádzajúca fotografia">‹</button>
+          <button type="button" class="nav-arrow next" aria-label="Ďalšia fotografia">›</button>
+        </div>
+
+        <ul class="thumbs">
+          <li class="photo selected">Foto 1</li>
+          <li class="photo">Foto 2</li>
+          <li class="photo">Foto 3</li>
+          <li class="photo">Foto 4</li>
+        </ul>
+      </section>
+
+      <!-- Popis a hodnotenia -->
+      <article class="item-info">
+        <section aria-labelledby="popis-nadpis">
+          <h2 id="popis-nadpis">Popis vybavenia</h2>
+          <p>
+            Univerzálny horský bicykel pre rekreačných jazdcov. Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            magna aliqua. Prilba a zámok sú k dispozícii za príplatok.
+          </p>
+          <dl class="specs">
+            <dt>Veľkosť rámu</dt><dd>M</dd>
+            <dt>Kolesá</dt><dd>29"</dd>
+            <dt>Prevody</dt><dd>21</dd>
+            <dt>Brzdy</dt><dd>Hydraulické kotúčové</dd>
+          </dl>
+        </section>
+
+        <section aria-labelledby="hodnotenia-nadpis">
+          <h2 id="hodnotenia-nadpis">Hodnotenia zákazníkov</h2>
+
+          <article class="review">
+            <header>
+              <strong>Peter N.</strong>
+              <span class="stars" aria-label="5 z 5 hviezdičiek">★★★★★</span>
+            </header>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Skvelý bicykel na výlety.</p>
+          </article>
+
+          <article class="review">
+            <header>
+              <strong>Jana S.</strong>
+              <span class="stars" aria-label="4 z 5 hviezdičiek">★★★★☆</span>
+            </header>
+            <p>Sed do eiusmod tempor incididunt ut labore. Odporúčam, len brzdy by chceli nastaviť.</p>
+          </article>
+
+          <nav class="pagination" aria-label="Stránkovanie hodnotení">
+            <a href="#" class="current">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#" aria-label="Ďalšia strana">›</a>
+          </nav>
+
+          <form class="card" action="#" method="post">
+            <h3>Pridať hodnotenie</h3>
+            <p class="hint">Dostupné len zákazníkovi, ktorý si vybavenie požičal.</p>
+            <div class="form-field">
+              <label for="hviezdy">Hodnotenie</label>
+              <select id="hviezdy" name="hviezdy">
+                <option>5 – výborné</option>
+                <option>4 – veľmi dobré</option>
+                <option>3 – dobré</option>
+                <option>2 – slabé</option>
+                <option>1 – zlé</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="komentar">Komentár</label>
+              <textarea id="komentar" name="komentar"></textarea>
+            </div>
+            <button type="button" class="btn">Odoslať hodnotenie</button>
+          </form>
+        </section>
+      </article>
+
+      <!-- Rezervácia -->
+      <aside class="reservation" aria-label="Rezervácia">
+        <form class="card" action="#" method="post">
+          <h2>Rezervácia</h2>
+          <p class="price">12 € <small>/ deň</small></p>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="datum-od">Dátum od</label>
+              <input type="date" id="datum-od" name="datum_od" value="2026-11-05">
+            </div>
+            <div class="form-field">
+              <label for="datum-do">Dátum do</label>
+              <input type="date" id="datum-do" name="datum_do" value="2026-11-08">
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="pocet">Počet kusov</label>
+            <input type="number" id="pocet" name="pocet" min="1" max="3" value="1">
+          </div>
+
+          <div class="availability" role="status">
+            ✔ V zvolenom termíne sú voľné 2 z 3 kusov
+          </div>
+
+          <div class="form-field">
+            <label for="poznamka">Poznámka</label>
+            <textarea id="poznamka" name="poznamka" placeholder="Voliteľná poznámka k rezervácii"></textarea>
+          </div>
+
+          <div class="total">
+            <span>Celková cena (3 dni)</span>
+            <span>36 €</span>
+          </div>
+
+          <button type="button" class="btn btn-primary btn-block">Rezervovať</button>
+          <p class="hint">Rezerváciu potvrdí správca. Do schválenia ju môžete zrušiť v sekcii „Moje rezervácie“.</p>
+        </form>
+
+        <section class="card" aria-label="Obsadenosť">
+          <h3>Obsadenosť</h3>
+          <div class="calendar-placeholder">Kalendár obsadenosti – placeholder</div>
+        </section>
+      </aside>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>© 2026 SportRent – požičovňa športového vybavenia</p>
+      <ul>
+        <li><a href="#">Kontakt</a></li>
+        <li><a href="#">Podmienky požičania</a></li>
+        <li><a href="#">Otváracie hodiny</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>
