@@ -1,0 +1,603 @@
+/* ==========================================================
+   SportRent – spoločné štýly (mobile-first)
+   Breakpointy: 600px (tablet), 900px (desktop)
+   ========================================================== */
+
+:root {
+  --bg: #ffffff;
+  --bg-soft: #f4f4f4;
+  --border: #333333;
+  --border-light: #bbbbbb;
+  --text: #222222;
+  --text-muted: #666666;
+  --accent: #d9d9d9;
+  --ok-bg: #eef7ee;
+  --radius: 6px;
+  --gap: 1rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+}
+
+h1, h2, h3 {
+  line-height: 1.25;
+  margin: 0 0 0.5rem;
+}
+
+h1 { font-size: 1.6rem; }
+h2 { font-size: 1.25rem; }
+h3 { font-size: 1.05rem; }
+
+/* ---------- Hlavička a navigácia ---------- */
+
+.site-header {
+  background: var(--bg-soft);
+  border-bottom: 2px solid var(--border);
+}
+
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.logo {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--border);
+  background: var(--accent);
+  font-size: 0.7rem;
+}
+
+.brand-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* CSS-only hamburger (bez JavaScriptu) */
+.menu-toggle {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.menu-button {
+  border: 1px solid var(--border);
+  background: #fff;
+  padding: 0.4rem 0.8rem;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: var(--radius);
+}
+
+.menu-toggle:focus-visible + .menu-button {
+  outline: 3px solid #4a90e2;
+}
+
+.menu-panel {
+  display: none;
+  width: 100%;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.menu-toggle:checked ~ .menu-panel {
+  display: flex;
+}
+
+.main-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.main-nav a {
+  display: block;
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--border);
+  background: #fff;
+  text-decoration: none;
+  border-radius: var(--radius);
+}
+
+.main-nav a.active {
+  background: var(--accent);
+  font-weight: bold;
+}
+
+.auth {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.user-name {
+  font-size: 0.9rem;
+}
+
+/* ---------- Tlačidlá ---------- */
+
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.1rem;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: var(--radius);
+}
+
+.btn-primary {
+  background: var(--accent);
+  border-width: 2px;
+  font-weight: bold;
+}
+
+.btn-block {
+  width: 100%;
+  padding: 0.8rem;
+}
+
+.btn:hover {
+  background: #eee;
+}
+
+/* ---------- Hlavný obsah ---------- */
+
+main {
+  flex: 1;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.breadcrumb {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.breadcrumb ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.breadcrumb li + li::before {
+  content: ">";
+  margin-right: 0.4rem;
+}
+
+/* Placeholder (úvodná stránka s rozložením) */
+.content-placeholder {
+  min-height: 55vh;
+  border: 2px dashed #777;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background:
+    linear-gradient(to top right, transparent calc(50% - 1px), #bbb, transparent calc(50% + 1px)),
+    linear-gradient(to bottom right, transparent calc(50% - 1px), #bbb, transparent calc(50% + 1px));
+}
+
+.content-placeholder p {
+  background: #fff;
+  border: 1px solid #777;
+  padding: 1rem 1.5rem;
+  margin: 0;
+  text-align: center;
+}
+
+/* ---------- Pätička ---------- */
+
+.site-footer {
+  background: var(--bg-soft);
+  border-top: 2px solid var(--border);
+  font-size: 0.9rem;
+}
+
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-inner p {
+  margin: 0;
+}
+
+.footer-inner ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* ---------- Detail vybavenia ---------- */
+
+.detail-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "gallery"
+    "reserve"
+    "info";
+}
+
+.gallery { grid-area: gallery; }
+.reservation { grid-area: reserve; }
+.item-info { grid-area: info; }
+
+.item-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.1rem 0.7rem;
+  border: 1px solid var(--border);
+  background: var(--accent);
+  font-size: 0.8rem;
+  border-radius: 999px;
+}
+
+.stars {
+  letter-spacing: 2px;
+  color: var(--text);
+}
+
+.photo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #777;
+  background:
+    linear-gradient(to top right, transparent calc(50% - 1px), #bbb, transparent calc(50% + 1px)),
+    linear-gradient(to bottom right, transparent calc(50% - 1px), #bbb, transparent calc(50% + 1px)),
+    #eee;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.photo-main {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  font-size: 1.1rem;
+}
+
+.photo-main .nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--border);
+  background: #fff;
+  font-size: 1.3rem;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.nav-arrow.prev { left: 0.5rem; }
+.nav-arrow.next { right: 0.5rem; }
+
+.thumbs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.thumbs .photo {
+  aspect-ratio: 4 / 3;
+  font-size: 0.75rem;
+}
+
+.thumbs .selected {
+  border: 3px solid var(--border);
+}
+
+.item-info section {
+  margin-top: 1.5rem;
+}
+
+.item-info h2 {
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 0.3rem;
+  margin-bottom: 0.8rem;
+}
+
+.specs {
+  margin: 1rem 0 0;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.3rem 1rem;
+  font-size: 0.95rem;
+}
+
+.specs dt { font-weight: bold; }
+.specs dd { margin: 0; }
+
+.review {
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.review header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.3rem;
+}
+
+.review p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 1rem 0;
+}
+
+.pagination a {
+  min-width: 2.2rem;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--border);
+  text-align: center;
+  text-decoration: none;
+  border-radius: var(--radius);
+}
+
+.pagination a.current {
+  background: var(--accent);
+  font-weight: bold;
+}
+
+/* ---------- Formuláre a karty ---------- */
+
+.card {
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  background: #fafafa;
+}
+
+.card + .card {
+  margin-top: 1rem;
+}
+
+.price {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0 0 1rem;
+}
+
+.price small {
+  font-size: 0.9rem;
+  font-weight: normal;
+  color: var(--text-muted);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: 0.75rem;
+}
+
+.form-field {
+  margin-bottom: 0.9rem;
+  min-width: 0;
+}
+
+.form-field label {
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  min-width: 0;
+  padding: 0.55rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fff;
+  font: inherit;
+}
+
+.form-field textarea {
+  min-height: 5rem;
+  resize: vertical;
+}
+
+.availability {
+  border: 1px dashed #555;
+  background: var(--ok-bg);
+  padding: 0.7rem 0.9rem;
+  margin-bottom: 0.9rem;
+  font-size: 0.9rem;
+  border-radius: var(--radius);
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding-top: 0.8rem;
+  margin: 0.5rem 0 1rem;
+  border-top: 1px solid var(--border-light);
+}
+
+.hint {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0.75rem 0 0;
+}
+
+.calendar-placeholder {
+  min-height: 7rem;
+  border: 1px dashed #777;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  padding: 0.5rem;
+}
+
+/* ==========================================================
+   Tablet (>= 600px)
+   ========================================================== */
+@media (min-width: 600px) {
+  h1 { font-size: 2rem; }
+
+  .footer-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .thumbs {
+    grid-template-columns: repeat(4, minmax(0, 120px));
+  }
+}
+
+/* ==========================================================
+   Desktop (>= 900px)
+   ========================================================== */
+@media (min-width: 900px) {
+  .header-inner {
+    padding: 0.9rem 2rem;
+    flex-wrap: nowrap;
+  }
+
+  .menu-button {
+    display: none;
+  }
+
+  .menu-panel {
+    display: flex;
+    flex: 1;
+    width: auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .main-nav {
+    margin-left: 1.5rem;
+  }
+
+  .main-nav ul {
+    flex-direction: row;
+  }
+
+  main {
+    padding: 1.5rem 2rem 2.5rem;
+  }
+
+  .content-placeholder {
+    min-height: 60vh;
+  }
+
+  .footer-inner {
+    padding: 1.25rem 2rem;
+  }
+
+  /* Detail: dva stĺpce – galéria + info vľavo, rezervácia vpravo */
+  .detail-grid {
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    grid-template-areas:
+      "gallery reserve"
+      "info    reserve";
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .reservation {
+    position: sticky;
+    top: 1rem;
+  }
+}
