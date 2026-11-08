@@ -2,8 +2,6 @@
 
 /**
  * Úvodná stránka – placeholder pre budúci katalóg vybavenia.
- *
- * Pozn.: súbor bol vygenerovaný pomocou AI (Claude) a upravený podľa zadania.
  */
 
 /** @var \Framework\Support\LinkGenerator $link */
@@ -12,6 +10,6 @@
     <p>
         <strong>PRIESTOR PRE OBSAH</strong><br>
         (placeholder – tu sa zobrazuje aktuálna stránka)<br>
-        <a href="<?= $link->url('polozka.detail') ?>">Ukážka stránky: Detail vybavenia →</a>
+        <a href="<?= $link->url('polozka.index') ?>">Prejsť do katalógu vybavenia →</a>
     </p>
 </section>

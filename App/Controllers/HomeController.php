@@ -10,8 +10,6 @@ use Framework\Http\Responses\Response;
  * Class HomeController
  * Úvodná stránka aplikácie SportRent (zatiaľ placeholder katalógu).
  *
- * Pozn.: súbor bol vygenerovaný pomocou AI (Claude) a upravený podľa zadania.
- *
  * @package App\Controllers
  */
 class HomeController extends BaseController

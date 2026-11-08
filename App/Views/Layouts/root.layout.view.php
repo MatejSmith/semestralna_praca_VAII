@@ -3,8 +3,6 @@
 /**
  * Spoločné rozloženie aplikácie SportRent (hlavička, menu, pätička).
  * Obsah konkrétneho pohľadu sa vkladá cez $contentHTML.
- *
- * Pozn.: súbor bol vygenerovaný pomocou AI (Claude) a upravený podľa zadania.
  */
 
 /** @var string $contentHTML */
@@ -46,7 +44,7 @@ $isCatalogActive = in_array($currentController, ['home', 'polozka'], true);
         <div class="menu-panel">
             <nav class="main-nav" aria-label="Hlavné menu">
                 <ul>
-                    <li><a href="<?= $link->url('home.index') ?>"<?= $isCatalogActive ? ' class="active"' : '' ?>>Katalóg</a></li>
+                    <li><a href="<?= $link->url('polozka.index') ?>"<?= $isCatalogActive ? ' class="active"' : '' ?>>Katalóg</a></li>
                     <li><a href="#">Moje rezervácie</a></li>
                     <li><a href="#">Profil</a></li>
                     <li><a href="#">Admin</a></li>

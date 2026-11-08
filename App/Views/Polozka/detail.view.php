@@ -2,18 +2,22 @@
 
 /**
  * Detail vybavenia s galériou, hodnoteniami a rezervačným formulárom.
- * Obsah je zatiaľ statický, ovládacie prvky nie sú funkčné.
- *
- * Pozn.: súbor bol vygenerovaný pomocou AI (Claude) a upravený podľa zadania.
+ * Základné údaje položky sa načítavajú z databázy, hodnotenia a galéria sú zatiaľ statické
+ * a ovládacie prvky rezervácie nie sú funkčné.
  */
 
+/** @var \App\Models\Polozka $polozka */
 /** @var \Framework\Support\LinkGenerator $link */
+
+$cenaZaDen = (float)$polozka->cena_za_den;
+$pocetKusov = max(1, (int)$polozka->pocet_kusov);
+$pocetDni = 3; // ukážkový termín (statický)
 ?>
 <nav class="breadcrumb" aria-label="Omrvinková navigácia">
     <ol>
-        <li><a href="<?= $link->url('home.index') ?>">Katalóg</a></li>
-        <li><a href="#">Bicykle</a></li>
-        <li aria-current="page"><strong>Horský bicykel Trek Marlin 7</strong></li>
+        <li><a href="<?= $link->url('polozka.index') ?>">Katalóg</a></li>
+        <li><?= e($polozka->kategoria) ?></li>
+        <li aria-current="page"><strong><?= e($polozka->nazov) ?></strong></li>
     </ol>
 </nav>
 
@@ -21,9 +25,9 @@
 
     <!-- Galéria -->
     <section class="gallery" aria-label="Galéria fotografií">
-        <h1>Horský bicykel Trek Marlin 7</h1>
+        <h1><?= e($polozka->nazov) ?></h1>
         <div class="item-meta">
-            <span class="tag">Bicykle</span>
+            <span class="tag"><?= e($polozka->kategoria) ?></span>
             <span class="stars" aria-hidden="true">★★★★☆</span>
             <span>4,2 (12 hodnotení)</span>
         </div>
@@ -46,17 +50,17 @@
     <article class="item-info">
         <section aria-labelledby="popis-nadpis">
             <h2 id="popis-nadpis">Popis vybavenia</h2>
-            <p>
-                Univerzálny horský bicykel pre rekreačných jazdcov. Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                magna aliqua. Prilba a zámok sú k dispozícii za príplatok.
-            </p>
+            <p><?= nl2br(e($polozka->popis)) ?></p>
             <dl class="specs">
-                <dt>Veľkosť rámu</dt><dd>M</dd>
-                <dt>Kolesá</dt><dd>29"</dd>
-                <dt>Prevody</dt><dd>21</dd>
-                <dt>Brzdy</dt><dd>Hydraulické kotúčové</dd>
+                <dt>Kategória</dt><dd><?= e($polozka->kategoria) ?></dd>
+                <dt>Cena za deň</dt><dd><?= number_format($cenaZaDen, 2, ',', ' ') ?> €</dd>
+                <dt>Počet kusov</dt><dd><?= $pocetKusov ?></dd>
+                <dt>Stav</dt><dd><?= $polozka->aktivna ? 'Aktívna' : 'Neaktívna' ?></dd>
             </dl>
+            <div class="actions">
+                <a class="btn" href="<?= $link->url('polozka.edit', ['id' => $polozka->id]) ?>">Upraviť</a>
+                <a class="btn" href="<?= $link->url('polozka.index') ?>">← Späť na katalóg</a>
+            </div>
         </section>
 
         <section aria-labelledby="hodnotenia-nadpis">
@@ -111,7 +115,7 @@
     <aside class="reservation" aria-label="Rezervácia">
         <form class="card" action="#" method="post">
             <h2>Rezervácia</h2>
-            <p class="price">12 € <small>/ deň</small></p>
+            <p class="price"><?= number_format($cenaZaDen, 2, ',', ' ') ?> € <small>/ deň</small></p>
 
             <div class="form-row">
                 <div class="form-field">
@@ -126,11 +130,11 @@
 
             <div class="form-field">
                 <label for="pocet">Počet kusov</label>
-                <input type="number" id="pocet" name="pocet" min="1" max="3" value="1">
+                <input type="number" id="pocet" name="pocet" min="1" max="<?= $pocetKusov ?>" value="1">
             </div>
 
             <div class="availability" role="status">
-                ✔ V zvolenom termíne sú voľné 2 z 3 kusov
+                ✔ V zvolenom termíne je voľných <?= $pocetKusov ?> z <?= $pocetKusov ?> kusov
             </div>
 
             <div class="form-field">
@@ -139,8 +143,8 @@
             </div>
 
             <div class="total">
-                <span>Celková cena (3 dni)</span>
-                <span>36 €</span>
+                <span>Celková cena (<?= $pocetDni ?> dni)</span>
+                <span><?= number_format($cenaZaDen * $pocetDni, 2, ',', ' ') ?> €</span>
             </div>
 
             <button type="button" class="btn btn-primary btn-block">Rezervovať</button>
