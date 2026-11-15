@@ -733,3 +733,16 @@ main {
     font-weight: bold;
   }
 }
+
+/* Úloha 7 – výber položiek vo formulári kategórie */
+.check-list {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin: 0 0 1rem;
+  padding: 0.5rem 1rem 0.75rem;
+}
+
+.check-list legend {
+  font-weight: 600;
+  padding: 0 0.4rem;
+}

@@ -5,9 +5,11 @@
  * Ten istý pohľad sa používa pre akcie create, edit a pre opätovné zobrazenie po chybe v save.
  */
 
+use App\Models\Kategoria;
 use App\Models\Polozka;
 
 /** @var Polozka $polozka */
+/** @var Kategoria[] $kategorie */
 /** @var string[] $errors */
 /** @var \Framework\Support\LinkGenerator $link */
 
@@ -46,12 +48,12 @@ $jeNova = ($polozka->id === null || $polozka->id === '');
         </div>
 
         <div class="form-field">
-            <label for="kategoria">Kategória</label>
-            <select id="kategoria" name="kategoria" required>
-                <option value="">– vyberte –</option>
-                <?php foreach (Polozka::KATEGORIE as $kategoria) { ?>
-                    <option value="<?= e($kategoria) ?>"<?= $polozka->kategoria === $kategoria ? ' selected' : '' ?>>
-                        <?= e($kategoria) ?>
+            <label for="kategoria_id">Kategória</label>
+            <select id="kategoria_id" name="kategoria_id">
+                <option value="">– bez kategórie –</option>
+                <?php foreach ($kategorie as $kat) { ?>
+                    <option value="<?= (int)$kat->id ?>"<?= (string)$polozka->kategoria_id === (string)$kat->id ? ' selected' : '' ?>>
+                        <?= e($kat->nazov) ?>
                     </option>
                 <?php } ?>
             </select>

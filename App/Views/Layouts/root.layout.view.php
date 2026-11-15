@@ -13,6 +13,7 @@
 $currentController = $_GET['c'] ?? 'home';
 $currentController = is_string($currentController) ? strtolower($currentController) : 'home';
 $isCatalogActive = in_array($currentController, ['home', 'polozka'], true);
+$isCategoryActive = $currentController === 'kategoria';
 ?>
 <!DOCTYPE html>
 <html lang="sk">
@@ -45,6 +46,7 @@ $isCatalogActive = in_array($currentController, ['home', 'polozka'], true);
             <nav class="main-nav" aria-label="Hlavné menu">
                 <ul>
                     <li><a href="<?= $link->url('polozka.index') ?>"<?= $isCatalogActive ? ' class="active"' : '' ?>>Katalóg</a></li>
+                    <li><a href="<?= $link->url('kategoria.index') ?>"<?= $isCategoryActive ? ' class="active"' : '' ?>>Kategórie</a></li>
                     <li><a href="#">Moje rezervácie</a></li>
                     <li><a href="#">Profil</a></li>
                     <li><a href="#">Admin</a></li>

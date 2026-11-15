@@ -46,7 +46,12 @@ $spravy = [
                             <?= e($polozka->nazov) ?>
                         </a>
                     </td>
-                    <td data-label="Kategória"><span class="tag"><?= e($polozka->kategoria) ?></span></td>
+                    <td data-label="Kategória"><?php $kat = $polozka->kategoria(); ?>
+                        <?php if ($kat !== null) { ?>
+                            <a class="tag" href="<?= $link->url('kategoria.detail', ['id' => $kat->id]) ?>"><?= e($kat->nazov) ?></a>
+                        <?php } else { ?>
+                            <span class="tag">Bez kategórie</span>
+                        <?php } ?></td>
                     <td data-label="Cena / deň"><?= number_format((float)$polozka->cena_za_den, 2, ',', ' ') ?> €</td>
                     <td data-label="Počet kusov"><?= (int)$polozka->pocet_kusov ?></td>
                     <td data-label="Stav"><?= $polozka->aktivna ? 'Aktívna' : 'Neaktívna' ?></td>

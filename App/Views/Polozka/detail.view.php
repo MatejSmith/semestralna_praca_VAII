@@ -10,13 +10,15 @@
 /** @var \Framework\Support\LinkGenerator $link */
 
 $cenaZaDen = (float)$polozka->cena_za_den;
+$kategoria = $polozka->kategoria();
+$nazovKategorie = $kategoria !== null ? $kategoria->nazov : 'Bez kategórie';
 $pocetKusov = max(1, (int)$polozka->pocet_kusov);
 $pocetDni = 3; // ukážkový termín (statický)
 ?>
 <nav class="breadcrumb" aria-label="Omrvinková navigácia">
     <ol>
         <li><a href="<?= $link->url('polozka.index') ?>">Katalóg</a></li>
-        <li><?= e($polozka->kategoria) ?></li>
+        <li><?= e($nazovKategorie) ?></li>
         <li aria-current="page"><strong><?= e($polozka->nazov) ?></strong></li>
     </ol>
 </nav>
@@ -27,7 +29,7 @@ $pocetDni = 3; // ukážkový termín (statický)
     <section class="gallery" aria-label="Galéria fotografií">
         <h1><?= e($polozka->nazov) ?></h1>
         <div class="item-meta">
-            <span class="tag"><?= e($polozka->kategoria) ?></span>
+            <span class="tag"><?= e($nazovKategorie) ?></span>
             <span class="stars" aria-hidden="true">★★★★☆</span>
             <span>4,2 (12 hodnotení)</span>
         </div>
@@ -52,7 +54,7 @@ $pocetDni = 3; // ukážkový termín (statický)
             <h2 id="popis-nadpis">Popis vybavenia</h2>
             <p><?= nl2br(e($polozka->popis)) ?></p>
             <dl class="specs">
-                <dt>Kategória</dt><dd><?= e($polozka->kategoria) ?></dd>
+                <dt>Kategória</dt><dd><?= e($nazovKategorie) ?></dd>
                 <dt>Cena za deň</dt><dd><?= number_format($cenaZaDen, 2, ',', ' ') ?> €</dd>
                 <dt>Počet kusov</dt><dd><?= $pocetKusov ?></dd>
                 <dt>Stav</dt><dd><?= $polozka->aktivna ? 'Aktívna' : 'Neaktívna' ?></dd>

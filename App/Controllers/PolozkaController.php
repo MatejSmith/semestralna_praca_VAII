@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Kategoria;
 use App\Models\Polozka;
 use Framework\Core\BaseController;
 use Framework\Http\HttpException;
@@ -15,6 +16,9 @@ use Framework\Http\Responses\Response;
  * Akcie:
  *  - index   (GET)  zoznam všetkých položiek                  -> Views/Polozka/index.view.php   (Read)
  *  - detail  (GET)  detail jednej položky (?id=)              -> Views/Polozka/detail.view.php  (Read)
+ *
+ * Každá položka patrí do jednej kategórie (entita Kategoria, vzťah 1:N cez `kategoria_id`).
+ *
  *  - create  (GET)  prázdny formulár                          -> Views/Polozka/form.view.php
  *  - edit    (GET)  formulár s údajmi položky (?id=)          -> Views/Polozka/form.view.php
  *  - save    (POST) uloží novú alebo upravenú položku         (Create / Update)
@@ -57,6 +61,7 @@ class PolozkaController extends BaseController
     {
         return $this->html([
             'polozka' => new Polozka(),
+            'kategorie' => Kategoria::getAll(orderBy: '`nazov` ASC'),
             'errors' => [],
         ], 'form');
     }
@@ -68,6 +73,7 @@ class PolozkaController extends BaseController
     {
         return $this->html([
             'polozka' => $this->nacitajPolozku($request->get('id')),
+            'kategorie' => Kategoria::getAll(orderBy: '`nazov` ASC'),
             'errors' => [],
         ], 'form');
     }
@@ -88,6 +94,8 @@ class PolozkaController extends BaseController
         $polozka->aktivna = $request->post('aktivna') ? 1 : 0; // nezaškrtnutý checkbox sa v POST nenachádza
 
         // Základná úprava vstupu (odstránenie medzier, desatinná čiarka -> bodka)
+        $polozka->kategoria_id = ($polozka->kategoria_id === null || $polozka->kategoria_id === '')
+            ? null : trim((string)$polozka->kategoria_id);
         $polozka->nazov = trim((string)$polozka->nazov);
         $polozka->popis = trim((string)$polozka->popis);
         $polozka->cena_za_den = str_replace(',', '.', trim((string)$polozka->cena_za_den));
@@ -96,7 +104,11 @@ class PolozkaController extends BaseController
         $errors = $this->validuj($polozka);
         if ($errors !== []) {
             // Formulár sa zobrazí znova so zadanými údajmi a chybami
-            return $this->html(['polozka' => $polozka, 'errors' => $errors], 'form');
+            return $this->html([
+                'polozka' => $polozka,
+                'kategorie' => Kategoria::getAll(orderBy: '`nazov` ASC'),
+                'errors' => $errors,
+            ], 'form');
         }
 
         $polozka->save();
@@ -170,7 +182,9 @@ class PolozkaController extends BaseController
             $errors[] = 'Názov môže mať najviac 150 znakov.';
         }
 
-        if (!in_array($polozka->kategoria, Polozka::KATEGORIE, true)) {
+        // Kategória je voliteľná, ale ak je vybraná, musí existovať (cudzí kľúč na tabuľku `kategorie`)
+        if ($polozka->kategoria_id !== null
+            && (!ctype_digit((string)$polozka->kategoria_id) || Kategoria::getOne((int)$polozka->kategoria_id) === null)) {
             $errors[] = 'Vyberte platnú kategóriu.';
         }
 
